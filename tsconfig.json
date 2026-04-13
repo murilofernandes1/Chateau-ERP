@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    /* Layout do Arquivo */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* Configurações de Ambiente */
+    "module": "NodeNext",          // Essencial para ESM com Node
+    "moduleResolution": "NodeNext", // Garante que o TS busque os arquivos como o Node espera
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "types": ["node"],             // Importante para o autocomplete do Node (fs, path, etc)
+
+    /* Outputs */
+    "sourceMap": true,
+    "declaration": false,        
+    "declarationMap": false,
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+
+    "verbatimModuleSyntax": true, 
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+    "esModuleInterop": true,       
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "ts-node": {
+    "esm": true                    
+  }
+}
