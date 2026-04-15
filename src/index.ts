@@ -1,10 +1,13 @@
-import express, { type Request, type Response } from 'express';
+import 'dotenv/config'
+import express from 'express';
+import userRoutes from "./routes/user.routes.js"
+const app = express()
 
-const app = express();
-app.use(express.json());
+app.use(express.json())
+app.use('/users', userRoutes)
 
-app.get('/', (req: Request, res: Response) => {
-  return res.json({ message: "ERP Online com TypeScript!" });
-});
+const PORT = process.env.PORT || 3000
 
-app.listen(3000, () => console.log("🔥 Server running on http://localhost:3000"));
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`)
+})
