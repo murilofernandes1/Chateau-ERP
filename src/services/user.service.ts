@@ -3,10 +3,10 @@ import jwt from 'jsonwebtoken'
 import { UserRepository } from '../repositories/user.repository.js'
 import { type CreateUserDTO, type LoginDTO } from '../types/user.types.js'
 
-export const userService = {
+export const UserService = {
   async create(data: CreateUserDTO) {
     const exists = await UserRepository.findByEmail(data.email)
-    if (exists) throw new Error('E-mail já cadastrado')
+    if (exists) throw new Error('User already exists.')
 
     const hashed = await bcrypt.hash(data.password, 10)
     const user = await UserRepository.create({

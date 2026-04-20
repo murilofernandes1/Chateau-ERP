@@ -10,7 +10,7 @@
     "target": "ESNext",
     "lib": ["ESNext"],
     "types": ["node"],             // Importante para o autocomplete do Node (fs, path, etc)
-
+    "typeRoots": ["./node_modules/@types", "./src/@types"],
     /* Outputs */
     "sourceMap": true,
     "declaration": false,        

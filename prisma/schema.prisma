@@ -39,13 +39,13 @@ model User {
 }
 
 model Client {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  document String @unique // CPF ou CNPJ
-  email    String @unique
-  phone    String
-
-  projects Project[]
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  document  String     @unique // CPF ou CNPJ
+  email     String?    @unique
+  phone     String?
+  contracts Contract[]
+  projects  Project[]
 }
 
 model Project {
@@ -77,6 +77,9 @@ model Contract {
 
   project   Project @relation(fields: [projectId], references: [id])
   projectId String  @db.ObjectId
+
+  client   Client @relation(fields: [clientId], references: [id])
+  clientId String @db.ObjectId
 
   payments Payment[]
 }

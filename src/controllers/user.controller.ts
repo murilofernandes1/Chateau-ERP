@@ -1,45 +1,47 @@
-import { type Request, type Response } from "express";
-import { userService } from "../services/user.service.js";
+import { type ControllerFn } from "../types/https.types.js";
+import { UserService } from "../services/user.service.js";
 
-export const userController = {
-    async create(req: Request, res: Response){
-        try{
-            const user = await userService.create(req.body)
-            res.status(201).json(user)
-        }catch(err: any){
-            res.status(400).json({error: err.message})
-        }
-    },
+export const UserController = {
 
-    async login(req: Request, res: Response){
-        try{
-            const result = await userService.login(req.body)
-            res.json(result)
-        }catch(err:any){
-            res.status(401).json({error: err.message})
-        }
-    },
+   create: (async (req) => {
+    const user = await UserService.create(req.body);
+    return {
+      statusCode: 201,
+      body: user
+    };
+  }) as ControllerFn,
 
-    async findAll(_req: Request, res: Response) {
-    const users = await userService.findAll()
-    res.json(users)
-  },
+    login: (async (req) => {
+      const result = await UserService.login(req.body)
+      return {
+        statusCode: 200,
+        body: result
+      }
+    }) as ControllerFn,
 
-  async findById(req: Request, res: Response) {
-    try {
-      const user = await userService.findById(req.params.id as string)
-      res.json(user)
-    } catch (err: any) {
-      res.status(404).json({ error: err.message })
+    findAll: (async () => {
+
+      const users = await UserService.findAll()
+      return {
+        statusCode: 200,
+        body: users
+      }
+
+    }) as ControllerFn,
+
+  findById: (async (req) => {
+    const user = await UserService.findById(req.params.id)
+    return {
+      statusCode: 200,
+      body: user
     }
-  },
+  }) as ControllerFn,
 
-  async delete(req: Request, res: Response) {
-    try {
-      await userService.delete(req.params.id as string)
-      res.status(204).send()
-    } catch (err: any) {
-      res.status(404).json({ error: err.message })
+  delete: (async (req) =>{
+    await UserService.delete(req.params.id)
+    return{
+      statusCode: 204,
+      body: null
     }
-  }
+  }) as ControllerFn
 }

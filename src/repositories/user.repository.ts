@@ -1,4 +1,3 @@
-import { create } from "node:domain"
 import {prisma} from "../lib/prisma.js"
 import { type CreateUserDTO } from "../types/user.types.js"
 
@@ -8,13 +7,13 @@ export const UserRepository = {
 },
     findByEmail: (email: string) => {
         return prisma.user.findUnique({where: {email}})
-    },
+},
 
     findAll: () => {
         prisma.user.findMany({
             orderBy: {createdAt: 'desc'}
         })
-    },
+},
 
     create: (data: CreateUserDTO & {password: string}) => 
 
