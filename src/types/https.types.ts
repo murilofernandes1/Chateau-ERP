@@ -3,12 +3,19 @@ export interface HttpRequest {
   params?: any;
   query?: any;
   headers?: any;
-  userId?: string | undefined; // Adicione o undefined explicitamente aqui
+  userId?: string | undefined; 
+  userRole: string | undefined;
 }
 
 export interface HttpResponse {
   statusCode: number;
   body: any;
+  locals?:{
+    user:{
+      id?: string,
+      role?: string
+    }
+  }
 }
 
-export type ControllerFn = (request: HttpRequest) => Promise<HttpResponse>;
+export type ControllerFn = (request: HttpRequest) => Promise<HttpResponse | void> ;

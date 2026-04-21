@@ -1,43 +1,38 @@
-import { type Request, type Response, type NextFunction } from 'express'
-import jwt from 'jsonwebtoken'
+import { type HttpRequest, type HttpResponse } from "../types/https.types.js";
+import jwt, { type JwtPayload } from 'jsonwebtoken';
 
-interface JwtPayload {
-  id: string
-  role: string
-}
+export const authMiddleware = async (req: HttpRequest): Promise<HttpResponse | void> => {
+  const auth = req.headers.authorization as string;
 
-declare global {
-  namespace Express {
-    interface Request {
-      userId?: string
-      userRole?: string
-    }
-  }
-}
-
-export const authMiddleware = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const auth = req.headers.authorization
   if (!auth?.startsWith('Bearer ')) {
-    return res.status(401).json({ error: 'Token não fornecido' })
+    return { statusCode: 401, body: { error: 'Token not provided.' } };
   }
 
   try {
-    const secret = process.env.JWT_SECRET || ''
-    if (!secret) {
-    throw new Error('JWT_SECRET não está definido nas variáveis de ambiente')
+    const secret = process.env.JWT_SECRET || '';
+    if(!secret){
+      return{
+        statusCode: 500,
+        body:{error: 'An internal server error occurred.'}
+      }
     }
-    const token = auth.split(' ')[1]
-    // @ts-ignore
-    const payload = jwt.verify(token, process.env.JWT_SECRET) as JwtPayload;
 
-    req.userId = payload.id
-    req.userRole = payload.role
-    next()
+    const token = auth.split(' ')[1];
+    if(!token){
+      return {
+        statusCode: 401,
+        body: {error: 'Malformed token.'}
+      }
+    }
+    
+    const payload = jwt.verify(token, secret) as JwtPayload
+
+    return { 
+      statusCode: 200, 
+      body: null, 
+      locals: { user:{ id: payload.id,  role: payload.role} } 
+    };
   } catch {
-    res.status(401).json({ error: 'Token inválido' })
+    return { statusCode: 401, body: { error: 'Token inválido' } };
   }
-}
+};
