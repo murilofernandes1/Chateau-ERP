@@ -13,7 +13,7 @@ export default function ERPLayout({ children, topbarTitle }: ERPLayoutProps) {
 
   const navItems = [
     {
-      href: "/",
+      href: "/dashboard",
       label: "Dashboard",
       icon: "fa-gauge-high",
       section: "Principal",
@@ -129,9 +129,9 @@ export default function ERPLayout({ children, topbarTitle }: ERPLayoutProps) {
               <span className="topbar-notif-dot" />
             </button>
             <div className="topbar-user">
-              <div className="topbar-avatar">JV</div>
+              <div className="topbar-avatar">MF</div>
               <div className="topbar-user-info">
-                <div className="topbar-user-name">João Vitor</div>
+                <div className="topbar-user-name">Murilo Fernandes</div>
                 <div className="topbar-user-role">Admin</div>
               </div>
               <i

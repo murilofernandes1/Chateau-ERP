@@ -1,7 +1,7 @@
 "use client";
-import "./globals.css";
+import "../globals.css";
 import Link from "next/link";
-
+import ERPLayout from "../components/ERPLayout";
 // ─── TYPES ────────────────────────────────────────────────────────────────
 interface StatCard {
   label: string;
@@ -199,104 +199,8 @@ const today = new Date().toLocaleDateString("pt-BR", {
 // ─── COMPONENT ────────────────────────────────────────────────────────────
 export default function DashboardPage() {
   return (
-    <div className="erp-layout">
-      {/* ════════════════════════════════
-          SIDEBAR
-      ════════════════════════════════ */}
-      <aside className="sidebar">
-        <div className="sidebar-logo">
-          <div className="sidebar-logo-mark">
-            <div className="sidebar-logo-icon">Ch</div>
-            <div>
-              <div className="sidebar-logo-text">Chateau</div>
-              <div className="sidebar-logo-sub">ERP Studio</div>
-            </div>
-          </div>
-        </div>
-
-        <nav className="sidebar-nav">
-          <div className="sidebar-section-label">Principal</div>
-
-          <Link href="/" className="sidebar-link active">
-            <i className="fa-solid fa-gauge-high" />
-            Dashboard
-          </Link>
-          <Link href="/clients" className="sidebar-link">
-            <i className="fa-solid fa-users" />
-            Clientes
-          </Link>
-          <Link href="/projects" className="sidebar-link">
-            <i className="fa-solid fa-folder-open" />
-            Projetos
-            <span className="sidebar-badge">18</span>
-          </Link>
-          <Link href="/contracts" className="sidebar-link">
-            <i className="fa-solid fa-file-contract" />
-            Contratos
-          </Link>
-
-          <div className="sidebar-section-label" style={{ marginTop: 8 }}>
-            Financeiro
-          </div>
-
-          <Link href="/financeiro" className="sidebar-link">
-            <i className="fa-solid fa-landmark" />
-            Caixa & Contas
-          </Link>
-          <Link href="/relatorios" className="sidebar-link">
-            <i className="fa-solid fa-chart-line" />
-            Relatórios
-          </Link>
-        </nav>
-
-        <div className="sidebar-footer">
-          <Link href="/ajuda" className="sidebar-link">
-            <i className="fa-regular fa-circle-question" />
-            Ajuda
-          </Link>
-          <Link href="/configuracoes" className="sidebar-link">
-            <i className="fa-solid fa-gear" />
-            Configurações
-          </Link>
-        </div>
-      </aside>
-
-      {/* ════════════════════════════════
-          MAIN
-      ════════════════════════════════ */}
-      <div className="main-content">
-        {/* ── TOPBAR ── */}
-        <header className="topbar">
-          <span className="topbar-title">Dashboard Overview</span>
-
-          <div className="topbar-search">
-            <i className="fa-solid fa-magnifying-glass" />
-            <input type="text" placeholder="Buscar projetos, clientes..." />
-          </div>
-
-          <div className="topbar-actions">
-            <button className="topbar-icon-btn">
-              <i className="fa-regular fa-envelope" />
-            </button>
-            <button className="topbar-icon-btn">
-              <i className="fa-regular fa-bell" />
-              <span className="topbar-notif-dot" />
-            </button>
-            <div className="topbar-user">
-              <div className="topbar-avatar">MF</div>
-              <div className="topbar-user-info">
-                <div className="topbar-user-name">Murilo Fernandes</div>
-                <div className="topbar-user-role">Admin</div>
-              </div>
-              <i
-                className="fa-solid fa-chevron-down"
-                style={{ fontSize: 10, color: "var(--text-muted)" }}
-              />
-            </div>
-          </div>
-        </header>
-
-        {/* ── PAGE BODY ── */}
+    <>
+      <ERPLayout topbarTitle="Dashboard">
         <main className="page-body">
           {/* Page header */}
           <div className="page-header">
@@ -843,7 +747,7 @@ export default function DashboardPage() {
             </div>
           </div>
         </main>
-      </div>
-    </div>
+      </ERPLayout>
+    </>
   );
 }
