@@ -30,8 +30,15 @@ export const ClientService = {
         return clients
     },
 
-    async findClient(document: string){
+    async findClientByDocument(document: number){
         const client = await ClientRepository.findByDocument(document)
+        if(!client) throw new Error("Client not found.")
+        
+        return client
+    },
+
+    async findClientById(id: string){
+        const client = await ClientRepository.findById(id)
         if(!client) throw new Error("Client not found.")
         
         return client

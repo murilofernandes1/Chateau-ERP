@@ -21,5 +21,6 @@ export const ClientRoutes = (router: Router) => {
     );
 
     router.get('/', adaptRoute(authMiddleware), adaptRoute(ClientController.getAll));
-    router.get('/:id', adaptRoute(authMiddleware), adaptRoute(ClientController.get));
+    router.get('/:id', adaptRoute(authMiddleware), adaptRoute(ClientController.getById));
+    router.get('/', adaptRoute(authMiddleware), adaptRoute(ClientController.getByDocument) )
 }

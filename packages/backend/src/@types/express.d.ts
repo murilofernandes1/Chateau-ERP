@@ -6,7 +6,7 @@ declare global {
         id: string | undefined
      },
      client:{
-        document: int
+        document: number
      }
     }
   }

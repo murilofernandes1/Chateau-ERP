@@ -221,16 +221,16 @@ export default function DashboardPage() {
             <i className="fa-solid fa-gauge-high" />
             Dashboard
           </Link>
-          <Link href="/clientes" className="sidebar-link">
+          <Link href="/clients" className="sidebar-link">
             <i className="fa-solid fa-users" />
             Clientes
           </Link>
-          <Link href="/projetos" className="sidebar-link">
+          <Link href="/projects" className="sidebar-link">
             <i className="fa-solid fa-folder-open" />
             Projetos
             <span className="sidebar-badge">18</span>
           </Link>
-          <Link href="/contratos" className="sidebar-link">
+          <Link href="/contracts" className="sidebar-link">
             <i className="fa-solid fa-file-contract" />
             Contratos
           </Link>
@@ -371,7 +371,7 @@ export default function DashboardPage() {
                   </div>
                 </div>
                 <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                  <Link href="/projetos" className="btn btn-ghost btn-sm">
+                  <Link href="/projects" className="btn btn-ghost btn-sm">
                     Ver todos{" "}
                     <i
                       className="fa-solid fa-arrow-right"

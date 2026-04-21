@@ -1,6 +1,6 @@
 export interface CreateClientDTO {
     name: string,
-    document: string,
+    document: number,
     email: string | null,
     phone: string | null
 }
@@ -8,7 +8,7 @@ export interface CreateClientDTO {
 export interface ClientResponse {
     id: string,
     name: string,
-    document: string,
+    document: number,
     email: string | null,
     phone: string | null,
     projects: [] | null,
@@ -18,7 +18,7 @@ export interface ClientResponse {
 export interface AllClientsResponse {
     id: string,
     name: string,
-    document: string,
+    document: number,
     email: string | null,
     phone: string | null
 }
